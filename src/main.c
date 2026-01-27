@@ -25,9 +25,7 @@ bool check_connection() {
   i2c_write_blocking(i2c0, DEVICE_ADDR, target_reg, 1, true);
   i2c_read_blocking(i2c0, DEVICE_ADDR, buf, 2, false);
 
-  uint8_t int_buf = *(uint8_t*)buf;
-
-  return int_buf == DEVICE_ID;
+  return *buf == DEVICE_ID;
 }
 
 int main() {
