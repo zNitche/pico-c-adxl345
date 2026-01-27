@@ -10,7 +10,7 @@ pico_sdk_init()
 
 add_executable(main src/main.c)
 
-target_link_libraries(main pico_stdlib)
+target_link_libraries(main pico_stdlib hardware_i2c)
 
 pico_enable_stdio_uart(main 0)
 pico_enable_stdio_usb(main 1)
