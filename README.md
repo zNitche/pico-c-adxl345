@@ -28,3 +28,7 @@ make -j 16
 screen /dev/tty.1
 CTRL + A & CTRL + \
 ```
+
+```
+sh copy_utf2.sh ./build/example.uf2 /Volumes/RPI-RP2
+```
