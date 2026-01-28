@@ -9,6 +9,10 @@ pico_sdk_init()
 add_subdirectory(lib)
 add_executable(example src/example.c)
 
+if (DEBUG)
+    target_compile_definitions(example PUBLIC DEBUG=1)
+endif()
+
 target_link_libraries(example pico_stdlib hardware_i2c pico_adxl345)
 
 pico_enable_stdio_uart(example 0)

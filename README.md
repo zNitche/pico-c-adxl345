@@ -32,3 +32,7 @@ CTRL + A & CTRL + \
 ```
 sh copy_utf2.sh ./build/example.uf2 /Volumes/RPI-RP2
 ```
+
+```
+cmake -DDEBUG=1 -S . -B build
+```

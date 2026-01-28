@@ -7,6 +7,11 @@
 int main() {
   stdio_init_all();
 
+#ifdef DEBUG
+  printf("waiting for input...");
+  getchar();
+#endif
+
   ADXL345I2C adxl345_i2c = {i2c0, 0x53, 0, 1};
 
   adxl345_setup_i2c(adxl345_i2c);
