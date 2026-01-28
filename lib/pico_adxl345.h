@@ -1,4 +1,5 @@
 #include <stdbool.h>
+
 #include "hardware/i2c.h"
 
 typedef struct {
@@ -8,5 +9,5 @@ typedef struct {
   int scl_pin;
 } ADXL345I2C;
 
-void adxl345_setup_i2c(ADXL345I2C* i2c);
-bool adxl345_check_connection(ADXL345I2C* i2c);
+void adxl345_setup_i2c(ADXL345I2C i2c);
+bool adxl345_check_connection(ADXL345I2C i2c);

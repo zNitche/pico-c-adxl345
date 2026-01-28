@@ -15,22 +15,22 @@ const struct {
   const uint8_t DEVICE_ID;
 } ADXL345Registers = {0x00, 0xE5};
 
-void adxl345_setup_i2c(ADXL345I2C* i2c) {
-  i2c_init(i2c->i2c, 100000);
+void adxl345_setup_i2c(ADXL345I2C i2c_c) {
+  i2c_init(i2c_c.i2c, 100000);
 
-  gpio_set_function(i2c->sda_pin, GPIO_FUNC_I2C);
-  gpio_pull_up(i2c->sda_pin);
+  gpio_set_function(i2c_c.sda_pin, GPIO_FUNC_I2C);
+  gpio_pull_up(i2c_c.sda_pin);
 
-  gpio_set_function(i2c->scl_pin, GPIO_FUNC_I2C);
-  gpio_pull_up(i2c->scl_pin);
+  gpio_set_function(i2c_c.scl_pin, GPIO_FUNC_I2C);
+  gpio_pull_up(i2c_c.scl_pin);
 }
 
-bool adxl345_check_connection(ADXL345I2C* i2c) {
+bool adxl345_check_connection(ADXL345I2C i2c_c) {
   uint8_t buf = 0x00;
 
-  i2c_write_blocking(i2c->i2c, i2c->device_address,
+  i2c_write_blocking(i2c_c.i2c, i2c_c.device_address,
                      &ADXL345Registers.ID_REGISTER_ADDR, 1, true);
-  i2c_read_blocking(i2c->i2c, i2c->device_address, &buf, 1, false);
+  i2c_read_blocking(i2c_c.i2c, i2c_c.device_address, &buf, 1, false);
 
   return buf == ADXL345Registers.DEVICE_ID;
 }

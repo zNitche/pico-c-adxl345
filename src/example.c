@@ -9,11 +9,11 @@ int main() {
 
   ADXL345I2C adxl345_i2c = {i2c0, 0x53, 0, 1};
 
-  adxl345_setup_i2c(&adxl345_i2c);
+  adxl345_setup_i2c(adxl345_i2c);
   sleep_ms(250);
 
   while (true) {
-    bool connected = adxl345_check_connection(&adxl345_i2c);
+    bool connected = adxl345_check_connection(adxl345_i2c);
 
     printf("connected: %d\n", connected);
 

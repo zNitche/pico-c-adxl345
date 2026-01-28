@@ -7,11 +7,11 @@ project(pico_adxl345_example)
 pico_sdk_init()
 
 add_subdirectory(lib)
-add_executable(main src/main.c)
+add_executable(example src/example.c)
 
-target_link_libraries(main pico_stdlib hardware_i2c pico_adxl345)
+target_link_libraries(example pico_stdlib hardware_i2c pico_adxl345)
 
-pico_enable_stdio_uart(main 0)
-pico_enable_stdio_usb(main 1)
+pico_enable_stdio_uart(example 0)
+pico_enable_stdio_usb(example 1)
 
-pico_add_extra_outputs(main)
+pico_add_extra_outputs(example)
