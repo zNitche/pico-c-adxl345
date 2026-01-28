@@ -3,29 +3,27 @@
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"
 
-#define PICO_DEFAULT_I2C_SDA_PIN 0
-#define PICO_DEFAULT_I2C_SCL_PIN 1
-
 #define DEVICE_ADDR _u(0x53)
 #define DEVICE_ID_REGISTER_ADDR _u(0x00)
 #define DEVICE_ID _u(0xE5)
 
 void setup_i2c() {
   i2c_init(i2c0, 100000);
-  gpio_set_function(PICO_DEFAULT_I2C_SDA_PIN, GPIO_FUNC_I2C);
-  gpio_set_function(PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C);
-  gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
-  gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
+
+  gpio_set_function(0, GPIO_FUNC_I2C);
+  gpio_pull_up(0);
+
+  gpio_set_function(1, GPIO_FUNC_I2C);
+  gpio_pull_up(1);
 }
 
 bool check_connection() {
-  uint8_t buf[2];
-  uint8_t target_reg[1] = {DEVICE_ID_REGISTER_ADDR};
+  uint8_t buf = 0x00;
 
-  i2c_write_blocking(i2c0, DEVICE_ADDR, target_reg, 1, true);
-  i2c_read_blocking(i2c0, DEVICE_ADDR, buf, 2, false);
+  i2c_write_blocking(i2c0, DEVICE_ADDR, DEVICE_ID_REGISTER_ADDR, 1, true);
+  i2c_read_blocking(i2c0, DEVICE_ADDR, &buf, 1, false);
 
-  return *buf == DEVICE_ID;
+  return buf == DEVICE_ID;
 }
 
 int main() {
