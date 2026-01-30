@@ -3,9 +3,6 @@
 source_path=$1
 target_path=$2
 
-echo "source: $source_path"
-echo "target: $target_path"
-
 copied=false
 
 if [ ! -n "$source_path" ] || [ ! -n "$target_path" ]; then
@@ -13,10 +10,15 @@ if [ ! -n "$source_path" ] || [ ! -n "$target_path" ]; then
     exit 1
 fi
 
+echo "source: $source_path"
+echo "target: $target_path"
+
 while true
 do
     if [ -d $target_path ] && [ $copied == false ]; then
-        echo "copying $source_path to $target_path..."
+        formatted_date="`date "+%Y-%m-%d %H:%M:%S"`"
+
+        echo "[$formatted_date] copying $source_path to $target_path..."
 
         cp $source_path $target_path
         echo "done."

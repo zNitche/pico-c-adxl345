@@ -8,7 +8,7 @@ int main() {
   stdio_init_all();
 
 #ifdef DEBUG
-  printf("waiting for input...");
+  // waiting for input
   getchar();
 #endif
 

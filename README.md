@@ -36,3 +36,5 @@ sh copy_utf2.sh ./build/example.uf2 /Volumes/RPI-RP2
 ```
 cmake -DDEBUG=1 -S . -B build
 ```
+
+added `pico_bootsel_via_double_reset` -> double tap reset btn
