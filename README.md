@@ -1,6 +1,9 @@
 # pico-c-adxl345
 PicoSDK (C) module for performing measurements using ADXL345 accelerometer 
 
+#### Resources
+- [Datasheet](https://www.sparkfun.com/datasheets/Sensors/Accelerometer/ADXL345.pdf)
+
 
 #### Notes WIP
 
