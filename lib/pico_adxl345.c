@@ -1,3 +1,5 @@
+#include "pico_adxl345.h"
+
 #include <stdio.h>
 
 #include "hardware/i2c.h"
@@ -5,30 +7,7 @@
 
 const double EARTH_GRAVITY = 9.80665;
 const double SCALE_MULTIPLIER = 0.004;
-
-typedef struct {
-  i2c_inst_t* i2c;
-  int device_address;
-  int sda_pin;
-  int scl_pin;
-} ADXL345I2C;
-
-typedef struct {
-  const uint8_t ID_REGISTER_ADDR;
-  const uint8_t DEVICE_ID;
-  const uint8_t POWER_CONTROL_REGISTER_ADDR;
-  const uint8_t DATA_REGISTER_ADDR;
-  const uint8_t DATA_FORMAT_REGISTER_ADDR;
-  const uint8_t ACTIVE_MODE;
-  const uint8_t STANDBY_MODE;
-} ADXL345Registers;
-
-enum ADXL345Ranges {
-  RANGE_2G = 0,
-  RANGE_4G = 1,
-  RANGE_8G = 2,
-  RANGE_16G = 3,
-};
+const double FINAL_READINGS_FACTOR = EARTH_GRAVITY * SCALE_MULTIPLIER;
 
 const ADXL345Registers ADXL345_REGISTERS = {0x00, 0xE5, 0x2D, 0x32,
                                             0x31, 0x28, 0x24};
