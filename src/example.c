@@ -21,20 +21,22 @@ int main() {
 
   printf("connected: %d\n", connected);
 
-  enum ADXL345Ranges sensor_range = RANGE_2G;
+  enum ADXL345Ranges sensor_range = RANGE_4G;
   adxl345_set_measurements_range(adxl345_i2c, sensor_range);
 
   adxl345_start_measurements(adxl345_i2c);
 
   if (connected == true) {
-    while (true) {
-      printf("processing...\n");
+    printf("processing...\n");
 
+    while (true) {
       adxl345_get_readings(adxl345_i2c);
 
-      sleep_ms(1000);
+      sleep_ms(200);
     }
 
     adxl345_stop_measurements(adxl345_i2c);
   }
+
+  return 0;
 }
