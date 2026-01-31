@@ -84,12 +84,9 @@ void adxl345_stop_measurements(ADXL345I2C i2c_c) {
                ADXL345_REGISTERS.STANDBY_MODE);
 }
 
-void adxl345_get_readings(ADXL345I2C i2c_c) {
+void adxl345_get_readings(ADXL345I2C i2c_c, float* accel) {
   uint8_t data_buff[6] = {0};
-  float accel[3] = {0.0};
 
   read_from_reg(i2c_c, ADXL345_REGISTERS.DATA_REGISTER_ADDR, 6, &data_buff);
   convert_readings(data_buff, accel);
-
-  printf("Acc. X = %f, Y = %f, Z = %f\n", accel[0], accel[1], accel[2]);
 };
