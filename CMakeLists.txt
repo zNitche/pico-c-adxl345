@@ -11,10 +11,13 @@ add_executable(example src/example.c)
 
 if (DEBUG)
     target_compile_definitions(example PUBLIC DEBUG=1)
+
+    target_link_libraries(example
+        pico_bootsel_via_double_reset
+        )
 endif()
 
 target_link_libraries(example
-        pico_bootsel_via_double_reset
         pico_stdlib
         hardware_i2c
         pico_adxl345
