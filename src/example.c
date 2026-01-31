@@ -28,9 +28,12 @@ int main() {
 
   if (connected == true) {
     printf("processing...\n");
+    float accel[3] = {0.0};
 
     while (true) {
-      adxl345_get_readings(adxl345_i2c);
+      adxl345_get_readings(adxl345_i2c, accel);
+
+      printf("Acc. X = %f, Y = %f, Z = %f\n", accel[0], accel[1], accel[2]);
 
       sleep_ms(200);
     }
