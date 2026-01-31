@@ -26,6 +26,19 @@ void read_from_reg(ADXL345I2C i2c_c, uint8_t reg, int bytes_to_read,
                     false);
 }
 
+void convert_readings(uint8_t raw_buff[6], float* accel) {
+  for (int i = 0; i < 3; i++) {
+    const int data_addr_f = i * 2;
+    const int data_addr_n = data_addr_f + 1;
+
+    int16_t out_i =
+        (int16_t)(raw_buff[data_addr_f] + (raw_buff[data_addr_n] << 8));
+    float out_f = (float)out_i * FINAL_READINGS_FACTOR;
+
+    accel[i] = out_f;
+  };
+}
+
 void adxl345_setup_i2c(ADXL345I2C i2c_c) {
   i2c_init(i2c_c.i2c, 100000);
 
@@ -73,17 +86,10 @@ void adxl345_stop_measurements(ADXL345I2C i2c_c) {
 
 void adxl345_get_readings(ADXL345I2C i2c_c) {
   uint8_t data_buff[6] = {0};
-  int16_t accel[3] = {0};
+  float accel[3] = {0.0};
 
   read_from_reg(i2c_c, ADXL345_REGISTERS.DATA_REGISTER_ADDR, 6, &data_buff);
-  // unpack_readings(data_buff, accel);
+  convert_readings(data_buff, accel);
 
-  // printf("Acc. X = %d, Y = %d, Z = %d\n", accel[0], accel[1], accel[2]);
-
-  int16_t out_i = (int16_t)(data_buff[0] + (data_buff[1] << 8));
-  float out_f = (float)out_i * FINAL_READINGS_FACTOR;
-
-  printf("x DATAX0: %d DATAX1: %d\n", data_buff[0], data_buff[1]);
-  printf("int16 x: %d\n", out_i);
-  printf("float x: %f\n", out_f);
+  printf("Acc. X = %f, Y = %f, Z = %f\n", accel[0], accel[1], accel[2]);
 };
