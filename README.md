@@ -52,7 +52,7 @@ make
 
 auto copying of `.uf2` file to MCU.
 ```
-sh copy_utf2.sh ./build/example.uf2 /Volumes/RPI-RP2
+sh copy_uf2.sh ./build/example.uf2 /Volumes/RPI-RP2
 ```
 
 #### Resources
