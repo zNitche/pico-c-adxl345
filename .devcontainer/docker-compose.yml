@@ -1,6 +1,6 @@
 services:
-  pico_sdk_worker:
-    container_name: pico_sdk_worker
+  adxl345_pico_sdk_worker:
+    container_name: adxl345_pico_sdk_worker
     build: .
     restart: "no"
     volumes:
