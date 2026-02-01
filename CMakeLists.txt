@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.27)
 
 include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 
-project(pico_adxl345_example)
+project(pico_adxl345_example VERSION 0.0.1)
 
 pico_sdk_init()
 
