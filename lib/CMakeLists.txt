@@ -13,4 +13,5 @@ target_include_directories(pico_adxl345 INTERFACE "${CMAKE_CURRENT_LIST_DIR}/inc
 
 target_sources(pico_adxl345 INTERFACE
   ${CMAKE_CURRENT_LIST_DIR}/src/adxl345.c
+  ${CMAKE_CURRENT_LIST_DIR}/src/utils.c
 )
