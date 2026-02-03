@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.27)
 
-project(pico_adxl345 VERSION 1.0.0)
+project(pico_adxl345 VERSION 1.1.0)
 
 add_library(pico_adxl345 INTERFACE)
 
