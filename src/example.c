@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "pico_adxl345/pico_adxl345.h"
+#include "pico_adxl345/adxl345.h"
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"
 

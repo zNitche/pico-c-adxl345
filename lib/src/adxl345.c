@@ -1,4 +1,4 @@
-#include "pico_adxl345/pico_adxl345.h"
+#include "pico_adxl345/adxl345.h"
 
 #include <stdio.h>
 
