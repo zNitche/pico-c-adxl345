@@ -20,13 +20,13 @@ void adxl345_setup_i2c(ADXL345I2C i2c_c) {
 bool adxl345_check_connection(ADXL345I2C i2c_c) {
   uint8_t buff = 0x00;
 
-  read_from_reg(i2c_c, ADXL345_REGISTERS.ID_REGISTER_ADDR, 1, &buff);
+  _read_from_reg(i2c_c, ADXL345_REGISTERS.ID_REGISTER_ADDR, 1, &buff);
 
   return buff == ADXL345_REGISTERS.DEVICE_ID;
 }
 
 void adxl345_get_settings(ADXL345I2C i2c_c, uint8_t* buff) {
-  read_from_reg(i2c_c, ADXL345_REGISTERS.DATA_FORMAT_REGISTER_ADDR, 1, buff);
+  _read_from_reg(i2c_c, ADXL345_REGISTERS.DATA_FORMAT_REGISTER_ADDR, 1, buff);
 }
 
 void adxl345_set_measurements_range(ADXL345I2C i2c_c,
@@ -34,27 +34,27 @@ void adxl345_set_measurements_range(ADXL345I2C i2c_c,
   uint8_t settings_buff = 0b00001000;
   settings_buff += range;
 
-  write_to_reg(i2c_c, ADXL345_REGISTERS.DATA_FORMAT_REGISTER_ADDR,
+  _write_to_reg(i2c_c, ADXL345_REGISTERS.DATA_FORMAT_REGISTER_ADDR,
                settings_buff);
 
   sleep_ms(100);
 }
 
 void adxl345_start_measurements(ADXL345I2C i2c_c) {
-  write_to_reg(i2c_c, ADXL345_REGISTERS.POWER_CONTROL_REGISTER_ADDR,
+  _write_to_reg(i2c_c, ADXL345_REGISTERS.POWER_CONTROL_REGISTER_ADDR,
                ADXL345_REGISTERS.ACTIVE_MODE);
 
   sleep_ms(100);
 }
 
 void adxl345_stop_measurements(ADXL345I2C i2c_c) {
-  write_to_reg(i2c_c, ADXL345_REGISTERS.POWER_CONTROL_REGISTER_ADDR,
+  _write_to_reg(i2c_c, ADXL345_REGISTERS.POWER_CONTROL_REGISTER_ADDR,
                ADXL345_REGISTERS.STANDBY_MODE);
 }
 
 void adxl345_get_readings(ADXL345I2C i2c_c, float* accel) {
   uint8_t data_buff[6] = {0};
 
-  read_from_reg(i2c_c, ADXL345_REGISTERS.DATA_REGISTER_ADDR, 6, &data_buff);
-  convert_readings(data_buff, accel);
+  _read_from_reg(i2c_c, ADXL345_REGISTERS.DATA_REGISTER_ADDR, 6, &data_buff);
+  _convert_readings(data_buff, accel);
 };
