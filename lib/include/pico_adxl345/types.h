@@ -20,8 +20,8 @@ typedef struct {
 } ADXL345Registers;
 
 enum ADXL345Ranges {
-  RANGE_2G = 0,
-  RANGE_4G = 1,
-  RANGE_8G = 2,
-  RANGE_16G = 3,
+  ADXL345_RANGE_2G = 0,
+  ADXL345_RANGE_4G = 1,
+  ADXL345_RANGE_8G = 2,
+  ADXL345_RANGE_16G = 3,
 };

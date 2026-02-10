@@ -21,8 +21,7 @@ int main() {
 
   printf("connected: %d\n", connected);
 
-  enum ADXL345Ranges sensor_range = RANGE_4G;
-  adxl345_set_measurements_range(adxl345_i2c, sensor_range);
+  adxl345_set_measurements_range(adxl345_i2c, ADXL345_RANGE_4G);
 
   adxl345_start_measurements(adxl345_i2c);
 
