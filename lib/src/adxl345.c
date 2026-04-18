@@ -57,6 +57,6 @@ void adxl345_get_readings(ADXL345I2C i2c_c, float accel[3]) {
     uint8_t data_buff[6] = {0};
 
     _adxl345_read_from_reg(i2c_c, ADXL345_REGISTERS.DATA_REGISTER_ADDR, 6,
-                           &data_buff);
+                           data_buff);
     _adxl345_convert_readings(data_buff, accel);
 };
