@@ -2,13 +2,14 @@
 
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"
+#include "pico_adxl345/defines.h"
 #include "pico_adxl345/utils.h"
 
 const ADXL345Registers ADXL345_REGISTERS = {0x00, 0xE5, 0x2D, 0x32,
                                             0x31, 0x28, 0x24};
 
 void adxl345_setup_i2c(ADXL345I2C i2c_c) {
-    i2c_init(i2c_c.i2c, 100000);
+    i2c_init(i2c_c.i2c, PICO_ADXL345_I2C_BAUDRATE);
 
     gpio_set_function(i2c_c.sda_pin, GPIO_FUNC_I2C);
     gpio_pull_up(i2c_c.sda_pin);

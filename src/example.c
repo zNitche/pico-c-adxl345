@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "pico_adxl345/adxl345.h"
+#include "pico_adxl345/defines.h"
 #include "hardware/i2c.h"
 #include "pico/stdlib.h"
 
@@ -12,7 +13,7 @@ int main() {
   getchar();
 #endif
 
-  ADXL345I2C adxl345_i2c = {i2c0, 0x53, 0, 1};
+  ADXL345I2C adxl345_i2c = {i2c0, PICO_ADXL345_I2C_DEFAULT_ADDRESS, 0, 1};
 
   adxl345_setup_i2c(adxl345_i2c);
   sleep_ms(250);
